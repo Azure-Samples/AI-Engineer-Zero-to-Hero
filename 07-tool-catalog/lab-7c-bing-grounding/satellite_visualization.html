@@ -11,10 +11,10 @@
     </style>
 </head>
 <body>
-<div class="info"><span id="n">11700</span> satellites in orbit</div>
+<div class="info"><span id="n">0</span> satellites in orbit</div>
 <canvas id="c"></canvas>
 <script>
-const TOTAL = 11700; // Updated from research
+const TOTAL = 15000; // Updated from latest research (approximate total operational satellites)
 const DISPLAY = 800;
 
 const c = document.getElementById('c');
@@ -114,8 +114,7 @@ function draw(){
         s.ph+=s.sp;
         let x=s.r*Math.cos(s.ph), y=0, z=s.r*Math.sin(s.ph);
         const ci=Math.cos(s.inc),si=Math.sin(s.inc);
-        const y1=y*ci-z*si;
-        const z1=y*si+z*ci;
+        const y1=y*ci-z*si, z1=y*si+z*ci;
         const cr=Math.cos(s.raan),sr=Math.sin(s.raan);
         satPos[i*3]=x*cr+z1*sr; satPos[i*3+1]=y1; satPos[i*3+2]=-x*sr+z1*cr;
     }
