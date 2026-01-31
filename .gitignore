@@ -42,3 +42,5 @@ mars-agent
 17b-fine-tuning-iss/.olive-cache/
 17b-fine-tuning-iss/*.json
 17b-fine-tuning-iss/*.yaml
+
+spoke-config.json
