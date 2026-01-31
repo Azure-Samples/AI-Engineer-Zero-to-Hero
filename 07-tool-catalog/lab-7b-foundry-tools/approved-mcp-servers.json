@@ -1,10 +1,5 @@
 {
   "mcpServers": {
-    "swagger-petstore": {
-      "title": "Swagger Petstore",
-      "url": "https://swagger-petstore.local",
-      "category": "General"
-    },
     "github-mcp": {
       "title": "GitHub MCP Server",
       "url": "https://api.githubcopilot.com/mcp",
@@ -34,6 +29,11 @@
       "title": "Satellite Command & Control",
       "url": "https://api.githubcopilot.com/mcp",
       "category": "Space Operations"
+    },
+    "swagger-petstore": {
+      "title": "Swagger Petstore",
+      "url": "https://swagger-petstore.local",
+      "category": "General"
     }
   }
 }
