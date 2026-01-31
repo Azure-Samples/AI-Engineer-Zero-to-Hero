@@ -98,6 +98,76 @@ By the end of this journey, you'll have created agents that are:
 </tr>
 </table>
 
+### Final Hub & Spoke Architecture
+
+```
+                              ┌─────────────────────────────────────┐
+                              │         LANDING ZONE (HUB)          │
+                              │     (lab1a-foundry-lz-hub)          │
+                              ├─────────────────────────────────────┤
+                              │                                     │
+                              │  ┌─────────────────────────────┐   │
+                              │  │     API Management (APIM)    │   │
+                              │  │  • StandardV2 tier           │   │
+                              │  │  • Rate limiting policies    │   │
+                              │  │  • Managed Identity auth     │   │
+                              │  │  • Multi-backend routing     │   │
+                              │  └─────────────┬─────────────────┘   │
+                              │                │                     │
+          ┌───────────────────┼────────────────┼────────────────────┐│
+          │                   │                │                    ││
+          ▼                   ▼                ▼                    ▼│
+┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
+│  AI Hub eastus2 │ │ AI Hub norwayeast│ │ AI Hub westus3  │ │ Shared Services │
+├─────────────────┤ ├─────────────────┤ ├─────────────────┤ ├─────────────────┤
+│ • gpt-4.1-mini  │ │ • o3-deep-      │ │ • DeepSeek-V3.2 │ │ • Storage       │
+│ • gpt-4.1       │ │   research      │ │                 │ │ • Key Vault     │
+│ • gpt-4.1-nano  │ │                 │ │                 │ │ • App Insights  │
+│ • text-embed-3  │ │                 │ │                 │ │                 │
+│ • model-router  │ │                 │ │                 │ │                 │
+└─────────────────┘ └─────────────────┘ └─────────────────┘ └─────────────────┘
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+          ▼                   ▼                   ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         SPOKE PROJECTS (TEAMS)                              │
+├─────────────────────┬─────────────────────┬─────────────────────────────────┤
+│    Contoso Team     │   Fabrikam Team     │    Woodgrove Team               │
+│  ┌───────────────┐  │  ┌───────────────┐  │  ┌───────────────┐              │
+│  │ Inventory AI  │  │  │ Doc Studio    │  │  │ Risk Analytics│              │
+│  └───────────────┘  │  └───────────────┘  │  └───────────────┘              │
+│                     │                     │                                 │
+│  APIM Connection    │  APIM Connection    │  APIM Connection                │
+│  ┌───────────────┐  │  ┌───────────────┐  │  ┌───────────────┐              │
+│  │landing-zone-  │  │  │landing-zone-  │  │  │landing-zone-  │              │
+│  │apim           │  │  │apim           │  │  │apim           │              │
+│  └───────────────┘  │  └───────────────┘  │  └───────────────┘              │
+│                     │                     │                                 │
+│  Allowed Models:    │  Allowed Models:    │  Allowed Models:                │
+│  • gpt-4.1-mini     │  • gpt-4o           │  • o1                           │
+│  • model-router     │  • gpt-4o-mini      │  • o3-deep-research             │
+└─────────────────────┴─────────────────────┴─────────────────────────────────┘
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+          ▼                   ▼                   ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       FEATURE SPOKES (CAPABILITIES)                         │
+├─────────────────────┬─────────────────────┬─────────────────────────────────┤
+│    Foundry IQ       │  Content Under-     │     Built-in Tools              │
+│    Spoke (Lab 6)    │  standing (Lab 9)   │     Spoke (Lab 7A)              │
+│  ┌───────────────┐  │  ┌───────────────┐  │  ┌───────────────┐              │
+│  │ AI Search     │  │  │ Local Models  │  │  │ Local gpt-4.1 │              │
+│  │ Knowledge     │  │  │ • gpt-4.1     │  │  │ File Search   │              │
+│  │ Bases         │  │  │ • embeddings  │  │  │ Code Interp.  │              │
+│  └───────────────┘  │  └───────────────┘  │  └───────────────┘              │
+│                     │                     │                                 │
+│  Uses APIM for      │  Requires local     │  Requires local                 │
+│  chat + embeddings  │  deployments        │  deployments                    │
+└─────────────────────┴─────────────────────┴─────────────────────────────────┘
+```
+
 ---
 
 ## The Journey
