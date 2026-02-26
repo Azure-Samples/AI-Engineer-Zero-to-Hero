@@ -576,7 +576,7 @@ Before you begin, ensure you have:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/aymenfurter/AI-Engineer-Zero-to-Hero.git
+git clone https://github.com/Azure-Samples/AI-Engineer-Zero-to-Hero.git
 cd AI-Engineer-Zero-to-Hero
 
 # 2. Authenticate with Azure
@@ -682,7 +682,7 @@ AI-Engineer-Zero-to-Hero/
 - **Speech Capabilities Lab** — Explore Foundry's voice features including the Voice Live API
 - **Basic vs Standard Agent Deployment** — Configure secure access to resources used within Agents (VNet integration, private endpoints)
 
-*Have ideas for new labs? [Open an issue](https://github.com/aymenfurter/AI-Engineer-Zero-to-Hero/issues) or submit a PR!*
+*Have ideas for new labs? [Open an issue](https://github.com/Azure-Samples/AI-Engineer-Zero-to-Hero/issues) or submit a PR!*
 
 ---
 
@@ -723,7 +723,7 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 <p align="center">
   <strong>Happy Building! 🚀</strong><br/>
-  <em>— Promptling & Aymen</em>
+  <em>— Promptling & Team</em>
 </p>
 
 <p align="center">
